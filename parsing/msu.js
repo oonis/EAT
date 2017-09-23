@@ -5,15 +5,20 @@ const Scraper = require('./scraper')
 const process = function (cb) {
   var postURL = 'https://eatatstate.msu.edu'
 
-  request({
-    uri: postURL,
-    agentOptions: {
-      rejectUnauthorized: false
+  const request_data = {
+      uri: postURL,
+      agentOptions: {
+        rejectUnauthorized: false
+      }
     }
-  }, function (error, response, body) {
-    if (error) { throw error }
+
+  request(request_data, function (error, response, body) {
+    if (error) { cb(error, null); return }
+
+    var allHalls = [] // Each hall is a url
+
+    // Propegate list. This is synchronous.
     var $ = cheerio.load(body)
-    var allHalls = []
     $('.dining-menu-name').each(function (i, elem) {
       var currentHallUrl = $(this).find('a').attr('href')
       if (currentHallUrl.indexOf('/menu/') !== 0) {
@@ -23,14 +28,14 @@ const process = function (cb) {
       var hallURL = postURL + currentHallUrl
       allHalls.push(hallURL)
     })
-    var scrape = new Scraper(allHalls)
-    scrape.scrapeSites().then(console.log).catch(
-      function (err) {
-        throw err
-      }
-    )
+
+    // We need to run processHall(url) on each url, then return cb!
+
+    cb(null, )
   })
+
 }
+
 function processHall (url) {
 
 }
