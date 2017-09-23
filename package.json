@@ -4,8 +4,8 @@
   "description": "Where should I eat at ...?",
   "main": "server.js",
   "scripts": {
-    "assets:mkdir:js": "mkdir -p ./assets/js",
-    "assets:mkdir:css": "mkdir -p ./assets/css",
+    "assets:mkdir:js": "mkdirp -p ./assets/js",
+    "assets:mkdir:css": "mkdirp -p ./assets/css",
     "assets:mkdir": "run-p assets:mkdir:*",
     "assets:copy:tether-js": "cp-cli node_modules/tether/dist/js/tether.min.js assets/js/tether.min.js",
     "assets:copy:tether-css": "cp-cli node_modules/tether/dist/css/tether.min.css assets/js/tether.min.css",
@@ -41,6 +41,7 @@
     "ejs": "^2.5.7",
     "express": "^4.15.4",
     "express-session": "^1.15.5",
+    "mkdirp": "^0.5.1",
     "node-db-init-sqlite3": "^1.0.2",
     "node-schedule": "^1.2.5",
     "passport": "^0.4.0",
