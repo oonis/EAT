@@ -28,25 +28,22 @@ const process = function (cb) {
       }
       let hallURL = postURL + currentHallUrl
       functions.push(function (callback) {
-        // DO THE ACTUAL THING
-        setTimeout(function () {
-          // results.push(hallURL)
-          var hallParams = {
-            uri: hallURL,
-            agentOptions: {
-              rejectUnauthorized: false
-            }
+        // results.push(hallURL)
+        var hallParams = {
+          uri: hallURL,
+          agentOptions: {
+            rejectUnauthorized: false
           }
-          request(hallParams, function (errors, responses, bodys) {
-            var thing = cheerio.load(bodys)
-            thing('.meal-title').each(function (e, element) {
-              // console.log(thing(this).html())
-              results.push(thing(this).html())
-            })
-            callback()
+        }
+        request(hallParams, function (errors, responses, bodys) {
+          var thing = cheerio.load(bodys)
+          thing('.meal-title').each(function (e, element) {
+            // console.log(thing(this).html())
+            results.push(thing(this).html())
           })
-          // callback() // You need to call this when you're done so it does the next thing.
-        }, 50)
+          callback()
+        })
+
       })
     })
 
