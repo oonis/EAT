@@ -93,7 +93,7 @@ process.on('SIGINT', function () {
 const database = require('mongodb').MongoClient
 const dbStr = 'mongodb://' +
     process.env.DB_USER + ':' + process.env.DB_PASSWORD +
-    '@ds159497.mlab.com:59497/eat'
+    '@67.205.173.240:27017/eat'
 database.connect(dbStr, function (err, db) {
   if (err) { throw err }
   app.set('db', db)
