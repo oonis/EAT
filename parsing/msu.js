@@ -1,6 +1,6 @@
 var request = require('request')
 var cheerio = require('cheerio')
-const Scraper = require ('./scraper')
+const Scraper = require('./scraper')
 
 const process = function (cb) {
   var postURL = 'https://eatatstate.msu.edu'
@@ -21,19 +21,17 @@ const process = function (cb) {
         return true // Not a hall so we don't care
       }
       var hallURL = postURL + currentHallUrl
-      allHalls.push(hallURL);
-
+      allHalls.push(hallURL)
     })
-    var scrape = new Scraper(allHalls);
+    var scrape = new Scraper(allHalls)
     scrape.scrapeSites().then(console.log).catch(
-      function(err) {
+      function (err) {
         throw err
       }
     )
-    
   })
 }
-function processHall(url) {
+function processHall (url) {
 
 }
 

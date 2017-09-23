@@ -1,24 +1,24 @@
 var request = require('request')
-var rp = require('request-promise');
+var rp = require('request-promise')
 
 class Scraper {
-    constructor(sites){
-        this.pages = sites
-    }   
+  constructor (sites) {
+    this.pages = sites
+  }
 
-    scrapeSites(){
-        return Promise.all(this.pages.map(this.scrapeUrl.bind(this)))
-    }
+  scrapeSites () {
+    return Promise.all(this.pages.map(this.scrapeUrl.bind(this)))
+  }
 
-    scrapeUrl(url){
-        return rp(url)
-        .then(function(body) {
-            return body
+  scrapeUrl (url) {
+    return rp(url)
+        .then(function (body) {
+          return body
         })
-        .catch(function(err) {
-            throw err
+        .catch(function (err) {
+          throw err
         })
-    }
+  }
 }
 
 module.exports = Scraper
