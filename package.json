@@ -33,6 +33,7 @@
   "license": "GPL-3.0",
   "private": true,
   "dependencies": {
+    "bluebird": "^3.5.0",
     "body-parser": "^1.18.2",
     "bootstrap": "4.0.0-alpha.6",
     "cheerio": "^1.0.0-rc.2",
@@ -46,7 +47,9 @@
     "node-schedule": "^1.2.5",
     "passport": "^0.4.0",
     "passport-google-oauth2": "^0.1.6",
-    "request": "^2.82.0"
+    "q": "^1.5.0",
+    "request": "^2.82.0",
+    "request-promise": "^4.2.2"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.1",

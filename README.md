@@ -1,4 +1,5 @@
 # EAT
+[![Build Status](https://travis-ci.org/oonis/EAT.svg?branch=master)](https://travis-ci.org/oonis/EAT)
 **E**at **A**ll **T**he
 Designed and written at *mhacks X*
 

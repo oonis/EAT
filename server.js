@@ -95,12 +95,11 @@ process.on('SIGINT', function () {
 
 var scheduler = require('node-schedule')
 
-var minuteJob = scheduler.scheduleJob('0 0 * * * *', function () {
+scheduler.scheduleJob('0 0 * * * *', function () {
   // Every hour lets go through and redo all of the menu's
   // Make it start of the day in the future
   console.log('It is a new hour')
 })
-console.log(minuteJob)
 
 // Database
 const dbinit = require('node-db-init-sqlite3')
