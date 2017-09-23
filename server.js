@@ -87,7 +87,7 @@ process.on('SIGINT', function () {
 
 // Database
 let database = require('mongodb').MongoClient
-database.connect('mongodb://'+process.env.DB_USER+':'+process.env.DB_PASSWORD+'@ds159497.mlab.com:59497/eat')
+database.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASSWORD + '@ds159497.mlab.com:59497/eat')
 app.set('db', database)
 
 // Close database on exit
