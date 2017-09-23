@@ -9,4 +9,16 @@ router.get('/', function (req, res, next) {
   })
 })
 
+router.get('/about', function (req, res, next) {
+  res.render('about', {
+    user: req.user
+  })
+})
+
+router.get('/privacy', function (req, res, next) {
+  res.render('privacy', {
+    user: req.user
+  })
+})
+
 module.exports = router

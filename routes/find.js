@@ -3,9 +3,10 @@ const router = express.Router()
 
 console.log('\t\tStarting route: /')
 
-router.get('/', function (req, res, next) {
-  res.render('homepage', {
-    user: req.user
+router.get('/:category', function (req, res, next) {
+  res.render('find', {
+    user: req.user,
+    category: req.params.category
   })
 })
 
