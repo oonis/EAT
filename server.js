@@ -89,6 +89,15 @@ process.on('SIGINT', function () {
   process.exit()
 })
 
+var scheduler = require('node-schedule')
+
+var minuteJob = scheduler.scheduleJob('0 0 * * * *', function () {
+  // Every hour lets go through and redo all of the menu's
+  // Make it start of the day in the future
+  console.log('It is a new hour')
+})
+console.log(minuteJob)
+
 // Database
 const database = require('mongodb').MongoClient
 const dbStr = 'mongodb://' +
