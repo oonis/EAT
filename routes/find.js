@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const msu-parse = require('../parsing/msu').process
+const msuParse = require('../parsing/msu').process
 
 console.log('\t\tStarting route: /')
 
