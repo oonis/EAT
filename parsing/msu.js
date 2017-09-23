@@ -27,25 +27,37 @@ const process = function (cb) {
         return true // Not a hall so we don't care
       }
       let hallURL = postURL + currentHallUrl
-      functions.push(function(callback) {
-
+      functions.push(function (callback) {
         // DO THE ACTUAL THING
-        setTimeout(function() {
-          results.push(hallURL)
-          callback() // You need to call this when you're done so it does the next thing.
+        setTimeout(function () {
+          // results.push(hallURL)
+          var hallParams = {
+            uri: hallURL,
+            agentOptions: {
+              rejectUnauthorized: false
+            }
+          }
+          request(hallParams, function (errors, responses, bodys) {
+            var thing = cheerio.load(bodys)
+            thing('.meal-title').each(function (e, element) {
+              // console.log(thing(this).html())
+              results.push(thing(this).html())
+            })
+            callback()
+          })
+          // callback() // You need to call this when you're done so it does the next thing.
         }, 50)
-
       })
     })
 
     // We need to run processHall(url) on each url, then return cb!
     paternal.seriesPattern(
       functions,
-      function() {
+      function () {
         console.log(results)
         cb(null, results)
       })
-    })
+  })
 }
 
 /*
