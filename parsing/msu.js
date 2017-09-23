@@ -34,6 +34,9 @@ const process = function (cb) {
     console.log('Allhalls: ' + allHalls)
     Q.resolve(allHalls)
     .then(getDeferredResult)
+    .then(function(data) {
+      console.log(data)
+    })
   })
 }
 
