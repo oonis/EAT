@@ -90,18 +90,24 @@ process.on('SIGINT', function () {
 })
 
 // Database
-let database = require('mongodb').MongoClient
-database.connect('mongodb://' +
+const database = require('mongodb').MongoClient
+const dbStr = 'mongodb://' +
     process.env.DB_USER + ':' + process.env.DB_PASSWORD +
-    '@ds159497.mlab.com:59497/eat')
-app.set('db', database)
+    '@ds159497.mlab.com:59497/eat'
+database.connect(dbStr, function (err, db) {
+  if (err) { throw err }
+  app.set('db', db)
 
-// Close database on exit
-process.on('exit', function () {
-  console.log('Closing db')
-  database.close()
+ // Close database on exit
+  process.on('SIGINT', function () {
+    process.exit()
+  })
+  process.on('exit', function () {
+    console.log('Closing db')
+    // CLOSE DATABASE
+  })
+
+  // Start server
+  console.log('\tStarting!')
+  app.listen(port)
 })
-
-// Start server
-console.log('\tStarting!')
-app.listen(port)
