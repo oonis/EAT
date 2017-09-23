@@ -1,7 +1,36 @@
 <% title = 'EAT@' + category %>
 <% include partials/top %>
 
-<p>Searching for <%= category %></p>
-<p><%= results %></p>
+<div class="container">
+  <main>
+  <article>
+	<header><h1>Lets EAT@ <%= category %></h1></header>
+	<p>Results are ordered by preference. Mostly my preferences, but eventually they can be yours.</p>
+	<a href="#">Okay I got it. Dont' show me these tips. I want to go fast.</a>
+
+	<div class="tab">
+	  <button class="tablinks" onclick="openCity(event, 'London')">London</button>
+	  <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
+	  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+	</div>
+
+	<div id="London" class="tabcontent">
+	  <h3>London</h3>
+	  <p>London is the capital city of England.</p>
+	</div>
+
+	<div id="Paris" class="tabcontent">
+	  <h3>Paris</h3>
+	  <p>Paris is the capital of France.</p> 
+	</div>
+
+	<div id="Tokyo" class="tabcontent">
+	  <h3>Tokyo</h3>
+	  <p>Tokyo is the capital of Japan.</p>
+	</div>
+
+  </article>
+  </main>
+</div>
 
 <% include partials/bot %>
