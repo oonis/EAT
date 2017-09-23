@@ -1,3 +1,7 @@
+# Local DB
+\.database
+\.db
+
 # Env
 \.env
 yarn\.lock

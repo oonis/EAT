@@ -29,7 +29,7 @@
     "ejs": "^2.5.7",
     "express": "^4.15.4",
     "express-session": "^1.15.5",
-    "mongodb": "^2.2.31",
+    "node-db-init-sqlite3": "^1.0.2",
     "node-schedule": "^1.2.5",
     "passport": "^0.4.0",
     "passport-google-oauth2": "^0.1.6",

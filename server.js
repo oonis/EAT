@@ -99,21 +99,23 @@ var minuteJob = scheduler.scheduleJob('0 0 * * * *', function () {
 console.log(minuteJob)
 
 // Database
-const database = require('mongodb').MongoClient
-const dbStr = 'mongodb://' +
-    process.env.DB_USER + ':' + process.env.DB_PASSWORD +
-    '@67.205.173.240:27017/eat'
-database.connect(dbStr, function (err, db) {
-  if (err) { throw err }
-  app.set('db', db)
+const dbinit = require('node-db-init-sqlite3')
+console.log('\tStarting database')
+dbinit.initialize(
+  path.resolve('.db'),
+  path.resolve('.dbConf'),
+  function (err, db) {
+    if (err) { throw err }
+    app.set('db', db)
 
-  // Close database on exit
-  process.on('exit', function () {
-    console.log('Closing db')
-    // CLOSE DATABASE
-  })
+    // Close database on exit
+    process.on('exit', function () {
+      console.log('Closing db')
+      db.close()
+    })
 
-  // Start server
-  console.log('\tStarting!')
-  app.listen(port)
-})
+    // Start server
+    console.log('\tStarting!')
+    app.listen(port)
+  }
+)
