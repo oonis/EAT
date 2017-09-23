@@ -21,7 +21,7 @@
   ],
   "repository": "https://github.com/oonis/EAT.git",
   "license": "GPL-3.0",
-  "private": "true",
+  "private": true,
   "dependencies": {
     "body-parser": "^1.18.2",
     "dotenv": "^4.0.0",
