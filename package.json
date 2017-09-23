@@ -5,6 +5,9 @@
   "main": "server.js",
   "scripts": {
     "build:lint": "standard",
+
+    "build:dos2unix": "./fixit.sh*",
+
     "build": "run-s build:*",
     "start:run": "node server",
     "start": "run-s build start:run"
