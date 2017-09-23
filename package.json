@@ -4,9 +4,7 @@
   "description": "Where should I eat at ...?",
   "main": "server.js",
   "scripts": {
-    "build:lint": "standard",
-
-    "build:dos2unix": "./fixit.sh*",
+    "build:lint": "standard --fix",
 
     "build": "run-s build:*",
     "start:run": "node server",
