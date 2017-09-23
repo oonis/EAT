@@ -10,7 +10,7 @@ require('dotenv').config()
 const port = process.env.PORT || 5000
 
 // Static files
-console.log('\tStatic files...")
+console.log('\tStatic files...')
 app.use(express.static(path.join(__dirname, 'assets')))
 
 // Configure bodyparser
