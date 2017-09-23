@@ -11,3 +11,6 @@ Designed and written at *mhacks X*
  
  # Code style?
  `npm standard`
+
+ # Can I fork this?
+  - No license has yet been decided. For the time being, it is owned by William A. Norman and Sam Macaluso.
