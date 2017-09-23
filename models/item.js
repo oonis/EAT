@@ -12,3 +12,5 @@ class Item {
     return this.options.includes('vegetarian')
   }
 }
+
+exports.Item = Item

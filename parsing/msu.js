@@ -1,6 +1,7 @@
 const request = require('request')
 const cheerio = require('cheerio')
 const paternal = require('node-paternal')
+const Item = require('../models/item')
 
 const process = function (cb) {
   const postURL = 'https://eatatstate.msu.edu'
@@ -28,7 +29,6 @@ const process = function (cb) {
       }
       let hallURL = postURL + currentHallUrl
       functions.push(function (callback) {
-        // results.push(hallURL)
         var hallParams = {
           uri: hallURL,
           agentOptions: {
@@ -38,7 +38,8 @@ const process = function (cb) {
         request(hallParams, function (errors, responses, bodys) {
           var thing = cheerio.load(bodys)
           thing('.meal-title').each(function (e, element) {
-            // console.log(thing(this).html())
+            var item = new Item()
+            item.name = thing(this).html()
             results.push(thing(this).html())
           })
           callback()
