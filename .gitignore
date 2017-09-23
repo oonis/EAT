@@ -1,3 +1,8 @@
+# Downloaded css/js
+*tether\.min\.*
+*jquery\.min\.*
+*bootstrap\.min\.*
+
 # Local DB
 \.database
 \.db

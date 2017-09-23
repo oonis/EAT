@@ -4,6 +4,18 @@
   "description": "Where should I eat at ...?",
   "main": "server.js",
   "scripts": {
+    "assets:mkdir:js": "mkdir -p ./assets/js",
+    "assets:mkdir:css": "mkdir -p ./assets/css",
+    "assets:mkdir": "run-p assets:mkdir:*",
+
+    "assets:copy:tether-js": "cp node_modules/tether/dist/js/tether.min.js assets/js/tether.min.js",
+    "assets:copy:tether-css": "cp node_modules/tether/dist/css/tether.min.css assets/js/tether.min.css",
+    "assets:copy:jquery-js": "cp node_modules/jquery/dist/jquery.min.js assets/js/jquery.min.js",
+    "assets:copy:bootstrap-js": "cp node_modules/bootstrap/dist/js/bootstrap.min.js assets/js/bootstrap.min.js",
+    "assets:copy:bootstrap-css": "cp node_modules/bootstrap/dist/css/bootstrap.min.css assets/css/bootstrap.min.css",
+    "assets:copy": "run-p assets:copy:*",
+
+    "build:assets": "run-s assets:mkdir assets:copy",
     "build:lint": "standard --fix",
     "build": "run-s build:*",
     "start:run": "node server",
@@ -24,6 +36,7 @@
   "private": true,
   "dependencies": {
     "body-parser": "^1.18.2",
+    "bootstrap": "4.0.0-alpha.6",
     "cheerio": "^1.0.0-rc.2",
     "dotenv": "^4.0.0",
     "ejs": "^2.5.7",
