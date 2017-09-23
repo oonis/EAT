@@ -1,0 +1,26 @@
+{
+  "name": "EAT",
+  "version": "0.0.0",
+  "description": "Where should I eat at ...?",
+  "main": "server.js",
+  "contributors": [
+    {
+      "name": "William A. Norman",
+      "email": "norman.william.dev@gmail.com"
+    },
+    {
+      "name": "Sam P. Macaluso",
+      "email": "sam@macalu.so"
+    }
+  ],
+  "repository": "https://github.com/oonis/EAT.git",
+  "license": "GPL-3",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.4",
+    "express-session": "^1.15.5",
+    "passport": "^0.4.0",
+    "passport-google-oauth2": "^0.1.6"
+  }
+}
