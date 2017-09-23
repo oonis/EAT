@@ -56,17 +56,6 @@ const process = function (cb) {
   })
 }
 
-/*
-function processHall (url) {
-  return function (data) {
-    var d = Q.defer()
-    // Do the shit with the hall
-    d.resolve(['haha, there\'s nothing!'])
-    return d.promise()
-  }
-}
-*/
-
 module.exports = {
   parse: process
 }
