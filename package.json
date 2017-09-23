@@ -24,16 +24,18 @@
   ],
   "repository": "https://github.com/oonis/EAT.git",
   "license": "GPL-3.0",
-  "private": "true",
+  "private": true,
   "dependencies": {
     "body-parser": "^1.18.2",
+    "cheerio": "^1.0.0-rc.2",
     "dotenv": "^4.0.0",
-    "express": "^4.15.4",
     "ejs": "^2.5.7",
+    "express": "^4.15.4",
     "express-session": "^1.15.5",
     "mongodb": "^2.2.31",
     "passport": "^0.4.0",
-    "passport-google-oauth2": "^0.1.6"
+    "passport-google-oauth2": "^0.1.6",
+    "request": "^2.82.0"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.1",

@@ -77,6 +77,7 @@ console.log('\tHandling exceptions')
 app.use(function (err, req, res, next) {
   res.status(err.status || 500)
   res.render('error', {
+    yourFunction: require('./parsing/msu').parse,
     message: err.message,
     status: err.status || 500,
     error: err
