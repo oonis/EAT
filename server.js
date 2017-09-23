@@ -99,7 +99,7 @@ app.set('db', database)
 // Close database on exit
 process.on('exit', function () {
   console.log('Closing db')
-  // CLOSE DATABASE
+  database.close()
 })
 
 // Start server
