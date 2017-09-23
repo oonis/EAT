@@ -29,7 +29,6 @@ const process = function (cb) {
       }
       let hallURL = postURL + currentHallUrl
       functions.push(function (callback) {
-        // results.push(hallURL)
         var hallParams = {
           uri: hallURL,
           agentOptions: {
