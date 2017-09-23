@@ -60,6 +60,10 @@ app.use(passport.session())
 console.log('\tConfiguring views/routes...')
 app.set('views', path.resolve(__dirname, 'views'))
 
+app.use('/find', require('./routes/find'))
+app.use('/pref', require('./routes/pref'))
+app.use('/', require('./routes/homepage'))
+
 // Handle 404
 console.log('\tHandling 404')
 app.use(function (req, res, next) {
@@ -86,7 +90,9 @@ process.on('SIGINT', function () {
 
 // Database
 let database = require('mongodb').MongoClient
-database.connect('mongodb://'+process.env.DB_USER+':'+process.env.DB_PASSWORD+'@ds159497.mlab.com:59497/eat')
+database.connect('mongodb://' +
+    process.env.DB_USER + ':' + process.env.DB_PASSWORD +
+    '@ds159497.mlab.com:59497/eat')
 app.set('db', database)
 
 // Close database on exit
