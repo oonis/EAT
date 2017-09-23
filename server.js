@@ -60,6 +60,7 @@ app.use(passport.session())
 console.log('\tConfiguring views/routes...')
 app.set('views', path.resolve(__dirname, 'views'))
 
+app.use('/auth', require('./routes/auth'))
 app.use('/find', require('./routes/find'))
 app.use('/pref', require('./routes/pref'))
 app.use('/', require('./routes/homepage'))
