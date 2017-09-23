@@ -1,0 +1,12 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 6rem;
+}
+
+footer {
+  border-top-style: solid;
+  border-top-width: 1px;
+  padding-top: 8px;
+  margin-top: 32px;
+}
+
