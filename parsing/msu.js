@@ -33,9 +33,9 @@ const process = function (cb) {
         'Latenight': 232
       }
 
-      for (let key in timeKeys) {
-        results[key] = {}
-        let finalURL = hallURL + '?field_mealtime_target_id=' + timeKeys[key]
+      for (let timeSlot in timeKeys) {
+        results[timeSlot] = []
+        let finalURL = hallURL + '?field_mealtime_target_id=' + timeKeys[timeSlot]
         functions.push(function (callback) {
           let hallParams = {
             uri: finalURL,
@@ -45,7 +45,7 @@ const process = function (cb) {
           }
           request(hallParams, function (errors, responses, bodys) {
             // STEP 2: Get all meals for this hall
-            let itemsAtHall = {}
+            let itemsAtHall = []
             let thing = cheerio.load(bodys)
             thing('.meal-course > .field-content > .columns').each(function (e, element) {
               let itemHTML = thing(this).html()
@@ -73,10 +73,13 @@ const process = function (cb) {
               if (itemHTML.toLowerCase().indexOf('msu beef') !== -1) { itemTags.push('beef') }
               if (itemHTML.toLowerCase().indexOf('msu pork') !== -1) { itemTags.push('pork') }
 
-              itemsAtHall[itemName] = itemTags
+              itemsAtHall.push({name: itemName, tags: itemTags})
             })
             let hallName = thing('#block-eatatstate-page-title > .rhs-block-content').text().trim()
-            results[key][hallName] = itemsAtHall
+            results[timeSlot].push({
+              name: hallName,
+              menu: itemsAtHall
+            })
             callback()
           })
         })

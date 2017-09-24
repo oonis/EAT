@@ -54,3 +54,7 @@ span.color-orange {
 span.color-green {
   color: green;
 }
+
+h2 small {
+  color: lightgrey;
+}

@@ -1,6 +1,7 @@
 <% title = 'EAT@' + category %>
 <% include partials/top %>
 
+<% // Overrides are custom html that replaces certain tags on menu items %>
 <% overrides = {} %>
 <% overrides['vegan'] = '<span class="color-green">&#9419;</span>' %>
 <% overrides['vegetarian'] = '<span class="color-orange">&#9419;</span>' %>
@@ -13,46 +14,57 @@
 	<a href="#">Okay I got it. Dont' show me these tips. I want to go fast.</a>
 
     <ul>
-      <% for ( i in overrides ) { %>
+      <% for ( let i in overrides ) { %>
       <% z = overrides[i] %>
       <li><%- z %> === <%= i %></li>
       <% } %>
     </ul>
 
 	<div class="tab">
-      <% for ( key in results ) { %>
-      <button class="tablinks" onclick="openCity(event, '<%=key%>')"><%=key%></button>
+      <% for ( let timeSlot in results ) { %>
+      <button class="tablinks" onclick="openCity(event, '<%=timeSlot%>')"><%=timeSlot%></button>
       <% } %>
 	</div>
 
-    <% for ( key in results ) { %>
-    <div id="<%=key%>" class="tabcontent">
+    <% for ( let timeSlot in results ) { %>
+    <div id="<%=timeSlot%>" class="tabcontent">
+      <% venues = results[timeSlot] %>
+      <% for ( let i = 0; i < venues.length; i++ ) { %>
+      <% let venue = venues[i] %>
+      <% let menuItems = venue.menu %>
 
-      <% theShit = results[key] %>
-      <% for ( kay in theShit ) { %>
-      <% stuffInKay = theShit[kay] %>
       <section>
-        <header><h2><%= kay %></h2></header>
+        <header>
+          <h2>
+            <%= venue.name %>
+            <% if (venue.score) { %>
+            <small>scored at <%=venue.score%></small>
+            <% } %>
+          </h2>
+        </header>
         <ul>
-        <% for (mealItemName in stuffInKay) { %>
-        <% mealItemTags = stuffInKay[mealItemName] %>
-        <li>
-          <%= mealItemName %>
-          <% if (mealItemTags.length > 0) { %>
-          -
-          <% for (let i = 0; i < mealItemTags.length; i++) { %>
-          <% tag = mealItemTags[i] %>
-          <% if (overrides[tag]) { %>
-          <%- overrides[tag] %>
-          <% } else { %>
-          <%= tag %>
+          <% for (let j = 0; j < menuItems.length; j++) { %>
+          <% menuItem = menuItems[j] %>
+          <% tags = menuItem.tags %>
+          <li>
+            <%= menuItem.name %>
+
+            <%_ if (tags.length > 0) { _%>
+            -
+            <% for (let z = 0; z < tags.length; z++) { %>
+            <% tag = tags[z] %>
+            <% if (overrides[tag]) { %>
+            <%- overrides[tag] %>
+            <% } else { %>
+            <%= tag %>
+            <% } %>
+            <% } %>
+            <% } %>
+          </li>
           <% } %>
-          <% } %>
-          <% } %>
-        </li>
-        <% } %>
         </ul>
       </section>
+
       <% } %>
 
     </div>

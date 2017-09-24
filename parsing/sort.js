@@ -4,19 +4,19 @@
 const sort = function (data, preferences) {
   for (let timeslot in data) {
     let venues = data[timeslot]
-    let venueScores = {}
 
     // Score each venue.
-    for (let venue in venues) {
-      let items = venues[venue]
-      let itemScores = {}
-      let totalScore = 0
+    for (let i = 0; i < venues.length; i++ ) {
+      let venue = venues[i]
+      let items = venue.menu
+      venue.score = 0
 
-      for (let item in items) {
+      for (let j = 0; j < items.length; j++ ) {
+        let item = items[j]
         let score = 0
-        let itemTags = items[item]
+        let itemTags = item.tags
 
-        if (item.toLowerCase().trim() === 'onion rings') {
+        if (item.name.toLowerCase().trim() === 'onion rings') {
           score = 10
         } else if (itemTags.includes('vegan')) {
           score = 3
@@ -26,19 +26,24 @@ const sort = function (data, preferences) {
           score = 0.5
         }
 
-        itemScores[item] = score
-        totalScore += score
+        item.score = score
+        venue.score += score
 
-        console.log(score + ' - ' + item + ':' + itemTags)
+        console.log(score + ' - ' + item.name + ':' + item.tags)
       }
 
       // Sort the items
+      items.sort(function(a, b) {
+        return b.score - a.score
+      })
 
-      console.log(totalScore + ' - ' + venue)
-      venueScores[venue] = totalScore
+      console.log(venue.score + ' - ' + venue.name)
     }
 
     // Sort the venues
+    venues.sort(function(a, b) {
+      return b.score - a.score
+    })
   }
 }
 
