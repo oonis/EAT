@@ -52,7 +52,7 @@ const process = function (cb) {
               let itemHTML = thing(this).html()
               let firstClose = itemHTML.indexOf('>')
               let firstOpen = itemHTML.indexOf('<', firstClose)
-              let itemName = itemHTML.substring(firstOpen + 1, firstClose)
+              let itemName = itemHTML.substring(firstOpen, firstClose+1)
               let itemTags = []
               // let item = new Item(itemName)
 
