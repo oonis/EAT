@@ -20,9 +20,15 @@
 	</ul>
 
     <ul class="my-lg-0 my-2">
+
 	  <li class="nav-item">
+        <% if (user) { %>
+        <a class="nav-link" href="/auth/logout"><%=user.name%>, Logout</a>
+        <% } else { %>
 		<a class="nav-link" href="/auth/login">Login</a>
+        <% } %>
 	  </li>
+
     </ul>
     <!--
 	<form class="form-inline my-2 my-lg-0">

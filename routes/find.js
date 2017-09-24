@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const msuParse = require('../parsing/msu').parse
+const sort = require('../parsing/sort').sort
 
 console.log('\t\tStarting route: /')
 
@@ -10,6 +11,7 @@ router.get('/:category', function (req, res, next) {
   if (category.toLowerCase() === 'msu') {
     msuParse(function (err, results) {
       if (err) { throw err }
+      sort(results, null)
       res.render('find', {
         user: req.user,
         category: category,
