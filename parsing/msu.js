@@ -17,12 +17,7 @@ const process = function (cb) {
     if (error) { cb(error, null); return }
 
     let functions = []
-    let results = {
-      breakfast: {},
-      lunch: {},
-      dinner: {},
-      lateNight: {}
-    }
+    let results = {}
 
     // STEP 1: Get all of the halls
     let $ = cheerio.load(body)
@@ -62,10 +57,10 @@ const process = function (cb) {
               let item = new Item(itemName)
 
               // This is awful, but I'm tired of this
-              if (itemHTML.toLowerCase.indexOf('vegetarian') !== -1) { item.options.push('vegetarian') }
-              if (itemHTML.toLowerCase.indexOf('vegan') !== -1) { item.options.push('vegan') }
-              if (itemHTML.toLowerCase.indexOf('msu beef') !== -1) { item.options.push('beef') }
-              if (itemHTML.toLowerCase.indexOf('msu pork') !== -1) { item.options.push('pork') }
+              if (itemHTML.toLowerCase().indexOf('vegetarian') !== -1) { item.options.push('vegetarian') }
+              if (itemHTML.toLowerCase().indexOf('vegan') !== -1) { item.options.push('vegan') }
+              if (itemHTML.toLowerCase().indexOf('msu beef') !== -1) { item.options.push('beef') }
+              if (itemHTML.toLowerCase().indexOf('msu pork') !== -1) { item.options.push('pork') }
 
               itemsAtHall.push(item)
             })
