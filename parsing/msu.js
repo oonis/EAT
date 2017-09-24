@@ -52,24 +52,24 @@ const process = function (cb) {
               let itemHTML = thing(this).html()
               let firstClose = itemHTML.indexOf('>')
               let firstOpen = itemHTML.indexOf('<', firstClose)
-              let itemName = itemHTML.substring(firstOpen, firstClose+1)
+              let itemName = itemHTML.substring(firstOpen, firstClose + 1)
 
               // Awful, quick, fix to ignore this
-              if(itemName.indexOf('Contains:')!== -1) {
+              if (itemName.indexOf('Contains:') !== -1) {
                 return true
               }
 
               // Awful fix to ignore this weird bug
-              if(itemName.trim().length == 0) {
+              if (itemName.trim().length === 0) {
                 return true
               }
 
               let itemTags = []
 
-              if (itemHTML.toLowerCase().indexOf('vegan') !== -1) { 
-                itemTags.push('vegan') 
+              if (itemHTML.toLowerCase().indexOf('vegan') !== -1) {
+                itemTags.push('vegan')
               } else if (itemHTML.toLowerCase().indexOf('vegetarian') !== -1) {
-                 itemTags.push('vegetarian') 
+                itemTags.push('vegetarian')
               }
               if (itemHTML.toLowerCase().indexOf('msu beef') !== -1) { itemTags.push('beef') }
               if (itemHTML.toLowerCase().indexOf('msu pork') !== -1) { itemTags.push('pork') }
