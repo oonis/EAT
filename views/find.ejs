@@ -9,25 +9,29 @@
 	<a href="#">Okay I got it. Dont' show me these tips. I want to go fast.</a>
 
 	<div class="tab">
-	  <button class="tablinks" onclick="openCity(event, 'London')">London</button>
-	  <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
-	  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+      <% for ( key in results ) { %>
+      <button class="tablinks" onclick="openCity(event, '<%=key%>')"><%=key%></button>
+      <% } %>
 	</div>
 
-	<div id="London" class="tabcontent">
-	  <h3>London</h3>
-	  <p>London is the capital city of England.</p>
-	</div>
+    <% for ( key in results ) { %>
+    <div id="<%=key%>" class="tabcontent">
 
-	<div id="Paris" class="tabcontent">
-	  <h3>Paris</h3>
-	  <p>Paris is the capital of France.</p> 
-	</div>
+      <% theShit = results[key] %>
+      <% for ( kay in theShit ) { %>
+      <% stuffInKay = theShit[kay] %>
+      <section>
+        <header><h2><%= kay %></h2></header>
+        <ul>
+        <% for (stuffinstuff in stuffInKay) { %>
+        <li><%= stuffinstuff %></li>
+        <% } %>
+        </ul>
+      </section>
+      <% } %>
 
-	<div id="Tokyo" class="tabcontent">
-	  <h3>Tokyo</h3>
-	  <p>Tokyo is the capital of Japan.</p>
-	</div>
+    </div>
+    <% } %> 
 
   </article>
   </main>
