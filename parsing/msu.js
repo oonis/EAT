@@ -31,41 +31,50 @@ const process = function (cb) {
       if (currentHallUrl.indexOf('/menu/') !== 0) {
         return true // Not a hall so we don't care
       }
+
       let hallURL = postURL + currentHallUrl
-      functions.push(function (callback) {
-        let hallParams = {
-          uri: hallURL,
-          agentOptions: {
-            rejectUnauthorized: false
+      const timeKeys = {
+        'Breakfast': 119,
+        'Lunch': 120,
+        'Dinner': 450,
+        'Latenight': 213
+      }
+
+      for (let key in timeKeys) {
+        results[key] = {}
+        let finalURL = hallURL + '?somestring=' + timeKeys[key]
+        functions.push(function (callback) {
+          let hallParams = {
+            uri: finalURL,
+            agentOptions: {
+              rejectUnauthorized: false
+            }
           }
-        }
-        request(hallParams, function (errors, responses, bodys) {
-          // STEP 2: Get all meals for this hall
-          let thing = cheerio.load(bodys)
-          thing('.meal-course > .field-content > .columns').each(function (e, element) {
-            let itemHTML = thing(this).html()
-            let firstClose = itemHTML.indexOf('>')
-            let firstOpen = itemHTML.indexOf('<', firstClose)
-            let itemName = itemHTML.substring(firstOpen + 1, firstClose)
-            let item = new Item(itemName)
-            // This is awful, but I'm tired of this
-            if (itemHTML.toLowerCase.indexOf('vegetarian') !== -1) {
-              item.options.push('vegetarian')
-            }
-            if (itemHTML.toLowerCase.indexOf('vegan') !== -1) {
-              item.options.push('vegan')
-            }
-            if (itemHTML.toLowerCase.indexOf('msu beef') !== -1) {
-              item.options.push('beef')
-            }
-            if (itemHTML.toLowerCase.indexOf('msu pork') !== -1) {
-              item.options.push('pork')
-            }
-            results.push(item)
+          request(hallParams, function (errors, responses, bodys) {
+            // STEP 2: Get all meals for this hall
+            let itemsAtHall = []
+            let thing = cheerio.load(bodys)
+            thing('.meal-course > .field-content > .columns').each(function (e, element) {
+              let itemHTML = thing(this).html()
+              let firstClose = itemHTML.indexOf('>')
+              let firstOpen = itemHTML.indexOf('<', firstClose)
+              let itemName = itemHTML.substring(firstOpen + 1, firstClose)
+              let item = new Item(itemName)
+
+              // This is awful, but I'm tired of this
+              if (itemHTML.toLowerCase.indexOf('vegetarian') !== -1) { item.options.push('vegetarian') }
+              if (itemHTML.toLowerCase.indexOf('vegan') !== -1) { item.options.push('vegan') }
+              if (itemHTML.toLowerCase.indexOf('msu beef') !== -1) { item.options.push('beef') }
+              if (itemHTML.toLowerCase.indexOf('msu pork') !== -1) { item.options.push('pork') }
+
+              itemsAtHall.push(item)
+            })
+            console.log('Finished fetching ' + key + ' for ' + hallURL)
+            results[key][hallURL] = itemsAtHall
+            callback()
           })
-          callback()
         })
-      })
+      }
     })
 
     // We need to run processHall(url) on each url, then return cb!
