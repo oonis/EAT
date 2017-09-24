@@ -1,6 +1,10 @@
 <% title = 'EAT@' + category %>
 <% include partials/top %>
 
+<% overrides = {} %>
+<% overrides['vegan'] = '<span class="color-green">&#9419;</span>' %>
+<% overrides['vegetarian'] = '<span class="color-orange">&#9419;</span>' %>
+
 <div class="container">
   <main>
   <article>
@@ -30,7 +34,12 @@
           <% if (mealItemTags.length > 0) { %>
           -
           <% for (let i = 0; i < mealItemTags.length; i++) { %>
-          <%= mealItemTags[i] %>
+          <% tag = mealItemTags[i] %>
+          <% if (overrides[tag]) { %>
+          <%- overrides[tag] %>
+          <% } else { %>
+          <%= tag %>
+          <% } %>
           <% } %>
           <% } %>
         </li>

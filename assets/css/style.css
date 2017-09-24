@@ -45,3 +45,12 @@ div.tab button.active {
     border: 1px solid #ccc;
     border-top: none;
 }
+
+/* Style for some icons lol */
+span.color-orange {
+ color: orange;
+}
+
+span.color-green {
+  color: green;
+}
