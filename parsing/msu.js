@@ -19,12 +19,11 @@ const process = function (cb) {
     let functions = []
     let results = []
 
-    // Propegate list. This is synchronous.
+    // STEP 1: Get all of the halls
     let $ = cheerio.load(body)
     $('.dining-menu-name').each(function (i, elem) {
       var currentHallUrl = $(this).find('a').attr('href')
       if (currentHallUrl.indexOf('/menu/') !== 0) {
-        // MSU makes it so if it isn't a hall it doesn't have /menu/
         return true // Not a hall so we don't care
       }
       let hallURL = postURL + currentHallUrl
@@ -36,10 +35,28 @@ const process = function (cb) {
           }
         }
         request(hallParams, function (errors, responses, bodys) {
+          // STEP 2: Get all meals for this hall
           var thing = cheerio.load(bodys)
-          thing('.meal-title').each(function (e, element) {
-            var item = Item(thing(this).html())
-            results.push(item)
+          thing('.meal-course > .field-content > .columns').each(function (e, element) {
+            var itemHTML = thing(this).html()
+            firstClose = itemHTML.indexOf('>')
+            firstOpen = itemHTML.indexOf('<',firstClose)
+            var itemName = itemHTML.substring(firstOpen+1,firstClose)
+            var item = new Item(itemName)
+            // This is awful, but I'm tired of this
+            if(itemHTML.toLowerCase.indexOf('vegetarian') !== -1) {
+              item.options.push('vegetarian')
+            }
+            if(itemHTML.toLowerCase.indexOf('vegan') !== -1) {
+              item.options.push('vegan')
+            }
+            if(itemHTML.toLowerCase.indexOf('msu beef') !== -1) {
+              item.options.push('beef')
+            }
+            if(itemHTML.toLowerCase.indexOf('msu pork') !== -1) {
+              item.options.push('pork')
+            }
+            results.push(item) 
           })
           callback()
         })
