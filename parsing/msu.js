@@ -10,7 +10,6 @@ const process = function (cb) {
       rejectUnauthorized: false
     }
   }
-  console.log(requestData)
 
   request(requestData, function (error, response, body) {
     if (error) { cb(error, null); return }
@@ -77,7 +76,6 @@ const process = function (cb) {
               itemsAtHall[itemName] = itemTags
             })
             let hallName = thing('#block-eatatstate-page-title > .rhs-block-content').text().trim()
-            console.log('Finished fetching ' + key + ' for ' + hallName)
             results[key][hallName] = itemsAtHall
             callback()
           })
