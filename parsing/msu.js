@@ -64,8 +64,9 @@ const process = function (cb) {
 
               itemsAtHall.push(item)
             })
-            console.log('Finished fetching ' + key + ' for ' + hallURL)
-            results[key][hallURL] = itemsAtHall
+            let hallName = thing('#block-eatatstate-page-title > .rhs-block-content').text().trim()
+            console.log('Finished fetching ' + key + ' for ' + hallName)
+            results[key][hallName] = itemsAtHall
             callback()
           })
         })
