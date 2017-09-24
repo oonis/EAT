@@ -17,7 +17,12 @@ const process = function (cb) {
     if (error) { cb(error, null); return }
 
     let functions = []
-    let results = []
+    let results = {
+      breakfast: {},
+      lunch: {},
+      dinner: {},
+      lateNight: {}
+    }
 
     // STEP 1: Get all of the halls
     let $ = cheerio.load(body)
