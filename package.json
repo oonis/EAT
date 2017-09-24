@@ -19,7 +19,7 @@
     "start:run": "node server",
     "start": "run-s build start:run",
 
-    "release:zip": "zip release.zip -q -r assets/ \\.dbconf models package\\.json server\\.js views/ \\.env node_modules parsing/ moutes/",
+    "release:zip": "zip release.zip -q -r assets/ \\.dbconf models package\\.json server\\.js views/ \\.env node_modules parsing/ routes/",
     "release": "run-s build release:*"
   },
   "contributors": [
