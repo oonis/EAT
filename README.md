@@ -17,4 +17,4 @@ Designed and written at *mhacks X*
  `npm standard`
 
  # Can I fork this?
- - Due to lack of finalized license type it is unadvised to avoid confusion in the future.
+ - Yes it's under GPL-3.0
