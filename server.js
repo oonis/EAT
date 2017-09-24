@@ -38,7 +38,7 @@ passport.use(
     new GoogleStrategy({
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: 'http://127.0.0.1:5000/auth/google/callback',
+      callbackURL: process.env.GOOGLE_AUTH_CALLBACK_URL,
       passReqToCallback: true
     }, function (req, accessToken, refreshToken, profile, cb) {
       let id = 'google_' + profile.id
