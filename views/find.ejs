@@ -23,8 +23,17 @@
       <section>
         <header><h2><%= kay %></h2></header>
         <ul>
-        <% for (stuffinstuff in stuffInKay) { %>
-        <li><%= stuffinstuff %></li>
+        <% for (mealItemName in stuffInKay) { %>
+        <% mealItemTags = stuffInKay[mealItemName] %>
+        <li>
+          <%= mealItemName %>
+          <% if (mealItemTags.length > 0) { %>
+          -
+          <% for (let i = 0; i < mealItemTags.length; i++) { %>
+          <%= mealItemTags[i] %>
+          <% } %>
+          <% } %>
+        </li>
         <% } %>
         </ul>
       </section>
