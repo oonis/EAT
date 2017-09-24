@@ -1,10 +1,12 @@
 <% title = 'EAT@ Preferences' %>
 <% include partials/top %>
 
+<div class="container">
 <%_ if (user) { _%>
 <p>Hey, <%= user %>! We're still working on this.</p>
 <%_ } else { _%>
 <p>We will work on local preference cache at some point. For now, you need to log in!</p>
 <%_ } _%>
+</div>
 
 <% include partials/bot %>
