@@ -1,16 +1,13 @@
-class Item {
-  constructor () {
-    this.name = ''
-    this.time = ''
-    this.options = []
-  }
+function Item (name) {
+  this.name = name
+  this.options = []
 
-  isVegan () {
+  this.isVegan = function () {
     return this.options.includes('vegan')
   }
-  isVegetarian () {
+  this.isVegetarian = function () {
     return this.options.includes('vegetarian')
   }
 }
 
-exports.Item = Item
+module.exports = Item
