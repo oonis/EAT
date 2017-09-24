@@ -53,6 +53,17 @@ const process = function (cb) {
               let firstClose = itemHTML.indexOf('>')
               let firstOpen = itemHTML.indexOf('<', firstClose)
               let itemName = itemHTML.substring(firstOpen, firstClose+1)
+
+              // Awful, quick, fix to ignore this
+              if(itemName.indexOf('Contains:')!== -1) {
+                return true
+              }
+
+              // Awful fix to ignore this weird bug
+              if(itemName.trim().length == 0) {
+                return true
+              }
+
               let itemTags = []
               // let item = new Item(itemName)
 
