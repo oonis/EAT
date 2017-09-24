@@ -101,6 +101,7 @@ scheduler.scheduleJob('0 0 * * * *', function () {
 })
 
 // Database
+/*
 const dbinit = require('node-db-init-sqlite3')
 console.log('\tStarting database')
 dbinit.initialize(
@@ -115,9 +116,12 @@ dbinit.initialize(
       console.log('Closing db')
       db.close()
     })
+*/
 
     // Start server
-    console.log('\tStarting!')
-    app.listen(port)
+console.log('\tStarting!')
+app.listen(port)
+/*
   }
 )
+*/
