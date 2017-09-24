@@ -12,6 +12,13 @@
 	<p>Results are ordered by preference. Mostly my preferences, but eventually they can be yours.</p>
 	<a href="#">Okay I got it. Dont' show me these tips. I want to go fast.</a>
 
+    <ul>
+      <% for ( i in overrides ) { %>
+      <% z = overrides[i] %>
+      <li><%- z %> === <%= i %></li>
+      <% } %>
+    </ul>
+
 	<div class="tab">
       <% for ( key in results ) { %>
       <button class="tablinks" onclick="openCity(event, '<%=key%>')"><%=key%></button>
