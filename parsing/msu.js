@@ -34,15 +34,15 @@ const process = function (cb) {
 
       let hallURL = postURL + currentHallUrl
       const timeKeys = {
-        'Breakfast': 119,
-        'Lunch': 120,
-        'Dinner': 450,
-        'Latenight': 213
+        'Breakfast': 192,
+        'Lunch': 190,
+        'Dinner': 191,
+        'Latenight': 232
       }
 
       for (let key in timeKeys) {
         results[key] = {}
-        let finalURL = hallURL + '?somestring=' + timeKeys[key]
+        let finalURL = hallURL + '?field_mealtime_target_id=' + timeKeys[key]
         functions.push(function (callback) {
           let hallParams = {
             uri: finalURL,
