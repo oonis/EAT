@@ -1,7 +1,6 @@
 const request = require('request')
 const cheerio = require('cheerio')
 const paternal = require('node-paternal')
-var Item = require('../models/item')
 
 const process = function (cb) {
   const postURL = 'https://eatatstate.msu.edu'
@@ -47,22 +46,23 @@ const process = function (cb) {
           }
           request(hallParams, function (errors, responses, bodys) {
             // STEP 2: Get all meals for this hall
-            let itemsAtHall = []
+            let itemsAtHall = {}
             let thing = cheerio.load(bodys)
             thing('.meal-course > .field-content > .columns').each(function (e, element) {
               let itemHTML = thing(this).html()
               let firstClose = itemHTML.indexOf('>')
               let firstOpen = itemHTML.indexOf('<', firstClose)
               let itemName = itemHTML.substring(firstOpen + 1, firstClose)
-              let item = new Item(itemName)
+              let itemTags = []
+              // let item = new Item(itemName)
 
               // This is awful, but I'm tired of this
-              if (itemHTML.toLowerCase().indexOf('vegetarian') !== -1) { item.options.push('vegetarian') }
-              if (itemHTML.toLowerCase().indexOf('vegan') !== -1) { item.options.push('vegan') }
-              if (itemHTML.toLowerCase().indexOf('msu beef') !== -1) { item.options.push('beef') }
-              if (itemHTML.toLowerCase().indexOf('msu pork') !== -1) { item.options.push('pork') }
+              if (itemHTML.toLowerCase().indexOf('vegetarian') !== -1) { itemTags.push('vegetarian') }
+              if (itemHTML.toLowerCase().indexOf('vegan') !== -1) { itemTags.push('vegan') }
+              if (itemHTML.toLowerCase().indexOf('msu beef') !== -1) { itemTags.push('beef') }
+              if (itemHTML.toLowerCase().indexOf('msu pork') !== -1) { itemTags.push('pork') }
 
-              itemsAtHall.push(item)
+              itemsAtHall[itemName] = itemTags
             })
             let hallName = thing('#block-eatatstate-page-title > .rhs-block-content').text().trim()
             console.log('Finished fetching ' + key + ' for ' + hallName)
