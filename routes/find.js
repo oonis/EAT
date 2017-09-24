@@ -5,8 +5,6 @@ const sort = require('../parsing/sort').sort
 
 console.log('\t\tStarting route: /')
 
-
-
 const parsers = {
   msu: require('../parsing/msu').parse,
   uom: require('../parsing/uom').parse
@@ -18,7 +16,6 @@ router.get('/:category', function (req, res, next) {
 
   let parser = parsers[key]
   if (parser) {
-
     parser(function (err, results) {
       if (err) { throw err }
 
@@ -31,7 +28,6 @@ router.get('/:category', function (req, res, next) {
         results: results
       })
     })
-
   } else {
     next()
   }

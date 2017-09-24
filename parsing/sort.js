@@ -6,12 +6,12 @@ const sort = function (data, preferences) {
     let venues = data[timeslot]
 
     // Score each venue.
-    for (let i = 0; i < venues.length; i++ ) {
+    for (let i = 0; i < venues.length; i++) {
       let venue = venues[i]
       let items = venue.menu
       venue.score = 0
 
-      for (let j = 0; j < items.length; j++ ) {
+      for (let j = 0; j < items.length; j++) {
         let item = items[j]
         let score = 0
         let itemTags = item.tags
@@ -33,7 +33,7 @@ const sort = function (data, preferences) {
       }
 
       // Sort the items
-      items.sort(function(a, b) {
+      items.sort(function (a, b) {
         return b.score - a.score
       })
 
@@ -41,7 +41,7 @@ const sort = function (data, preferences) {
     }
 
     // Sort the venues
-    venues.sort(function(a, b) {
+    venues.sort(function (a, b) {
       return b.score - a.score
     })
   }

@@ -1,20 +1,19 @@
 const process = function (cb) {
-
   const results = {
     Breakfast: [
-    {
-      name: 'Shaw',
-      menu: [
+      {
+        name: 'Shaw',
+        menu: [
         { name: 'Beef Tips', tags: [ 'beef' ] },
-        { name: 'Brocoli', tags: [ 'vegan', 'vegetarian' ] },
-      ]
-    },
-    {
-      name: ':O',
-      menu: [
+        { name: 'Brocoli', tags: [ 'vegan', 'vegetarian' ] }
+        ]
+      },
+      {
+        name: ':O',
+        menu: [
         { name: 'Onion Rings', tags: [ 'vegan' ] }
-      ]
-    }
+        ]
+      }
     ],
     Lunch: [
     ],
