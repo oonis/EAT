@@ -9,10 +9,10 @@ function Item (name) {
     return this.options.includes('vegetarian')
   }
   this.hasBeef = function () {
-      return this.options.includes('beef')
+    return this.options.includes('beef')
   }
   this.hasPork = function () {
-      return this.options.includes('pork')
+    return this.options.includes('pork')
   }
 }
 
