@@ -65,11 +65,12 @@ const process = function (cb) {
               }
 
               let itemTags = []
-              // let item = new Item(itemName)
 
-              // This is awful, but I'm tired of this
-              if (itemHTML.toLowerCase().indexOf('vegetarian') !== -1) { itemTags.push('vegetarian') }
-              if (itemHTML.toLowerCase().indexOf('vegan') !== -1) { itemTags.push('vegan') }
+              if (itemHTML.toLowerCase().indexOf('vegan') !== -1) { 
+                itemTags.push('vegan') 
+              } else if (itemHTML.toLowerCase().indexOf('vegetarian') !== -1) {
+                 itemTags.push('vegetarian') 
+              }
               if (itemHTML.toLowerCase().indexOf('msu beef') !== -1) { itemTags.push('beef') }
               if (itemHTML.toLowerCase().indexOf('msu pork') !== -1) { itemTags.push('pork') }
 
