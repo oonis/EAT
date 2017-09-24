@@ -17,7 +17,10 @@
     "build:lint": "standard --fix",
     "build": "run-s build:*",
     "start:run": "node server",
-    "start": "run-s build start:run"
+    "start": "run-s build start:run",
+
+    "release:zip": "zip release.zip -q -r assets/ \\.dbconf models package\\.json server\\.js views/ \\.env node_modules parsing/ moutes/",
+    "release": "run-s build release:*"
   },
   "contributors": [
     {
