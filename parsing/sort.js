@@ -39,7 +39,6 @@ const sort = function (data, preferences) {
     }
 
     // Sort the venues
-
   }
 }
 
