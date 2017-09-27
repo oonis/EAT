@@ -1,4 +1,4 @@
-# EAT
+# EAT@
 [![Build Status](https://travis-ci.org/oonis/EAT.svg?branch=master)](https://travis-ci.org/oonis/EAT)
 **E**at **A**ll **T**he
 Designed and written at *mhacks X*
@@ -13,8 +13,3 @@ Designed and written at *mhacks X*
    - It needs login credentials.
  - Add the information to a file named `.env` at the project root before uploading it to elastic beanstalk.
  
- # Code style?
- `npm standard`
-
- # Can I fork this?
- - Yes it's under GPL-3.0
