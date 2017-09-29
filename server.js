@@ -7,7 +7,7 @@ console.log('Launching server...')
 // Configure environment
 console.log('\tConfiguring environment...')
 require('dotenv').config()
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 8080
 
 // Static files
 console.log('\tStatic files...')
