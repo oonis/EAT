@@ -50,7 +50,7 @@ const process = function (cb) {
             thing('.meal-course > .field-content > .columns').each(function (e, element) {
               let innerText = thing(this).text()
 
-              if( innerText.indexOf('Contains:') !== -1 ) {
+              if (innerText.indexOf('Contains:') !== -1) {
                 return true
               }
 
@@ -58,14 +58,13 @@ const process = function (cb) {
               let itemName = ''
               let cases = null
               let itemTags = []
-              if(brokenText.length == 2) {
+              if (brokenText.length === 2) {
                 itemName = brokenText[0]
                 cases = brokenText[1].split(',')
-                for(let i in cases) {
+                for (let i in cases) {
                   itemTags.push(cases[i].trim())
                 }
-
-              } else if(brokenText.length == 1 && brokenText[0] !== ''){
+              } else if (brokenText.length === 1 && brokenText[0] !== '') {
                 // We have no special tags to insert
                 itemName = brokenText[0]
               } else {
@@ -76,17 +75,17 @@ const process = function (cb) {
               if (itemName.trim().length === 0) {
                 return true
               }
-              
+
               itemsAtHall.push({name: itemName, tags: itemTags})
             })
-            if(itemsAtHall.length !== 0) {
+            if (itemsAtHall.length !== 0) {
               let hallName = thing('#block-eatatstate-page-title > .rhs-block-content').text().trim()
               results[timeSlot].push({
                 name: hallName,
                 menu: itemsAtHall
               })
             }
-            
+
             callback()
           })
         })
