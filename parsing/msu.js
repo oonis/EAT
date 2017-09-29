@@ -48,13 +48,27 @@ const process = function (cb) {
             let itemsAtHall = []
             let thing = cheerio.load(bodys)
             thing('.meal-course > .field-content > .columns').each(function (e, element) {
-              let itemHTML = thing(this).html()
-              let firstClose = itemHTML.indexOf('>')
-              let firstOpen = itemHTML.indexOf('<', firstClose)
-              let itemName = itemHTML.substring(firstOpen, firstClose + 1)
+              let innerText = thing(this).text()
 
-              // Awful, quick, fix to ignore this
-              if (itemName.indexOf('Contains:') !== -1) {
+              if( innerText.indexOf('Contains:') !== -1 ) {
+                return true
+              }
+
+              let brokenText = innerText.trim().split('\n')
+              let itemName = ''
+              let cases = null
+              let itemTags = []
+              if(brokenText.length == 2) {
+                itemName = brokenText[0]
+                cases = brokenText[1].split(',')
+                for(let i in cases) {
+                  itemTags.push(cases[i].trim())
+                }
+
+              } else if(brokenText.length == 1 && brokenText[0] !== ''){
+                // We have no special tags to insert
+                itemName = brokenText[0]
+              } else {
                 return true
               }
 
@@ -62,17 +76,7 @@ const process = function (cb) {
               if (itemName.trim().length === 0) {
                 return true
               }
-
-              let itemTags = []
-
-              if (itemHTML.toLowerCase().indexOf('vegan') !== -1) {
-                itemTags.push('vegan')
-              } else if (itemHTML.toLowerCase().indexOf('vegetarian') !== -1) {
-                itemTags.push('vegetarian')
-              }
-              if (itemHTML.toLowerCase().indexOf('msu beef') !== -1) { itemTags.push('beef') }
-              if (itemHTML.toLowerCase().indexOf('msu pork') !== -1) { itemTags.push('pork') }
-
+              
               itemsAtHall.push({name: itemName, tags: itemTags})
             })
             let hallName = thing('#block-eatatstate-page-title > .rhs-block-content').text().trim()
