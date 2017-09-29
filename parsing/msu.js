@@ -79,11 +79,14 @@ const process = function (cb) {
               
               itemsAtHall.push({name: itemName, tags: itemTags})
             })
-            let hallName = thing('#block-eatatstate-page-title > .rhs-block-content').text().trim()
-            results[timeSlot].push({
-              name: hallName,
-              menu: itemsAtHall
-            })
+            if(itemsAtHall.length !== 0) {
+              let hallName = thing('#block-eatatstate-page-title > .rhs-block-content').text().trim()
+              results[timeSlot].push({
+                name: hallName,
+                menu: itemsAtHall
+              })
+            }
+            
             callback()
           })
         })
@@ -94,7 +97,6 @@ const process = function (cb) {
     paternal.seriesPattern(
       functions,
       function () {
-        console.log(results)
         cb(null, results)
       })
   })
