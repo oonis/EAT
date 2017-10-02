@@ -45,7 +45,6 @@ const process = function (cb) {
             }
           }
           request(hallParams, function (errors, responses, bodys) {
-
             // STEP 2: Get all meals for this hall
             let itemsAtHall = []
             let thing = cheerio.load(bodys)
