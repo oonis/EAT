@@ -59,6 +59,13 @@ passport.deserializeUser(function (obj, cb) {
 app.use(passport.initialize())
 app.use(passport.session())
 
+var scheduler = require('node-schedule')
+
+scheduler.scheduleJob('* * 1 * * *', function () {
+  // Every hour lets go through and redo all of the menu's
+  // Make it start of the day in the future
+})
+
 // Routes
 console.log('\tConfiguring views/routes...')
 app.set('views', path.resolve(__dirname, 'views'))
@@ -92,36 +99,16 @@ process.on('SIGINT', function () {
   process.exit()
 })
 
-var scheduler = require('node-schedule')
-
-scheduler.scheduleJob('0 0 * * * *', function () {
-  // Every hour lets go through and redo all of the menu's
-  // Make it start of the day in the future
-  console.log('It is a new hour')
-})
-
 // Database
-/*
-const dbinit = require('node-db-init-sqlite3')
 console.log('\tStarting database')
-dbinit.initialize(
-  path.resolve('.db'),
-  path.resolve('.dbConf'),
-  function (err, db) {
-    if (err) { throw err }
-    app.set('db', db)
+var sqlite3 = require('sqlite3').verbose()
+var db = new sqlite3.Database(':memory:')
 
-    // Close database on exit
-    process.on('exit', function () {
-      console.log('Closing db')
-      db.close()
-    })
-*/
+process.on('exit', function () {
+  console.log('closing the database')
+  db.close()
+})
 
     // Start server
 console.log('\tStarting!')
 app.listen(port)
-/*
-  }
-)
-*/

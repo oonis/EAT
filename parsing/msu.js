@@ -3,6 +3,7 @@ const cheerio = require('cheerio')
 const paternal = require('node-paternal')
 
 const process = function (cb) {
+  console.log('Grabbing MSU menu')
   const postURL = 'https://eatatstate.msu.edu'
   const requestData = {
     uri: postURL,
