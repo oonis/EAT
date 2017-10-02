@@ -45,6 +45,7 @@ const process = function (cb) {
             }
           }
           request(hallParams, function (errors, responses, bodys) {
+
             // STEP 2: Get all meals for this hall
             let itemsAtHall = []
             let thing = cheerio.load(bodys)
@@ -94,7 +95,7 @@ const process = function (cb) {
     })
 
     // We need to run processHall(url) on each url, then return cb!
-    paternal.seriesPattern(
+    paternal.parallelPattern(
       functions,
       function () {
         cb(null, results)
