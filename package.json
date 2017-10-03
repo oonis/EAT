@@ -50,7 +50,8 @@
     "passport": "^0.4.0",
     "passport-google-oauth2": "^0.1.6",
     "request": "^2.82.0",
-    "request-promise": "^4.2.2"
+    "request-promise": "^4.2.2",
+    "sqlite3": "^3.1.13"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.1",

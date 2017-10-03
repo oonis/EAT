@@ -3,6 +3,7 @@ const cheerio = require('cheerio')
 const paternal = require('node-paternal')
 
 const process = function (cb) {
+  console.log('Grabbing MSU menu')
   const postURL = 'https://eatatstate.msu.edu'
   const requestData = {
     uri: postURL,
@@ -44,7 +45,6 @@ const process = function (cb) {
             }
           }
           request(hallParams, function (errors, responses, bodys) {
-
             // STEP 2: Get all meals for this hall
             let itemsAtHall = []
             let thing = cheerio.load(bodys)
