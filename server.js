@@ -60,12 +60,11 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 // Database
-console.log('\tStarting database')
+/* console.log('\tStarting database')
 var sqlite3 = require('sqlite3').verbose()
 var db = new sqlite3.Database(':memory:')
 
 db.run('CREATE TABLE menus (name TEXT, val TEXT)')
-
 
 var msuMenu = require('./parsing/msu').parse
 
@@ -74,17 +73,12 @@ msuMenu(function (err, ret) {
 
   db.run('INSERT INTO menus VALUES (?, ?)', ['msu', JSON.stringify(ret)])
 })
-
+*/
 var scheduler = require('node-schedule')
 
 scheduler.scheduleJob('* * 1 * * *', function () {
   // Every hour lets go through and redo all of the menu's
   // Make it start of the day in the future
-  msuMenu(function (err, ret) {
-    if (err) { throw err }
-    
-    db.run('UPDATE menus SET val = ? where name = ?', [JSON.stringify(ret),'msu'])
-  })
 })
 
 // Routes
@@ -97,11 +91,11 @@ app.use('/pref', require('./routes/pref'))
 app.use('/', require('./routes/homepage'))
 
 // Pass the db to the router
-app.use(function(req,res,next) {
+/* app.use(function(req,res,next) {
   req.db = db
   next()
 })
-
+*/
 // Handle 404
 console.log('\tHandling 404')
 app.use(function (req, res, next) {
@@ -126,11 +120,11 @@ process.on('SIGINT', function () {
   process.exit()
 })
 
-process.on('exit', function () {
+/* process.on('exit', function () {
   console.log('closing the database')
   db.close()
-})
+}) */
 
-    // Start server
+// Start server
 console.log('\tStarting!')
 app.listen(port)
