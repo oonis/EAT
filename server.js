@@ -42,7 +42,6 @@ app.use(require('./lib/oauth2').router)
 console.log('\tConfiguring views/routes...')
 app.set('views', path.resolve(__dirname, 'views'))
 
-app.use('/auth', require('./routes/auth'))
 app.use('/find', require('./routes/find'))
 app.use('/pref', require('./routes/pref'))
 app.use('/', require('./routes/homepage'))
@@ -71,7 +70,7 @@ process.on('SIGINT', function () {
   process.exit()
 })
 
-console.log('\tStarting!')
+console.log('\tServer Started!')
 app.listen(port)
 
 module.exports = app
