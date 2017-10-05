@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path')
 const app = express()
+const passport = require('passport')
 
 console.log('Launching server...')
 
@@ -32,39 +33,10 @@ app.use(require('express-session')({
   signed: true
 }))
 
-const passport = require('passport')
-const GoogleStrategy = require('passport-google-oauth2').Strategy
-passport.use(
-    new GoogleStrategy({
-      clientID: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: process.env.GOOGLE_AUTH_CALLBACK_URL,
-      passReqToCallback: true
-    }, function (req, accessToken, refreshToken, profile, cb) {
-      let id = 'google_' + profile.id
-      cb(null, {
-        name: profile.name.givenName,
-        id: id
-      })
-    })
-)
-
-// Basic user serialization
-passport.serializeUser(function (user, cb) {
-  cb(null, user)
-})
-passport.deserializeUser(function (obj, cb) {
-  cb(null, obj)
-})
+// OAuth
 app.use(passport.initialize())
 app.use(passport.session())
-
-var scheduler = require('node-schedule')
-scheduler.scheduleJob('* * 1 * * *', function () {
-  // Every hour lets go through and redo all of the menu's
-  // Make it start of the day in the future
-  console.log('It is a new hour')
-})
+app.use(require('./lib/oauth2').router)
 
 // Routes
 console.log('\tConfiguring views/routes...')
@@ -97,11 +69,6 @@ app.use(function (err, req, res, next) {
 // Handle SIGINT
 process.on('SIGINT', function () {
   process.exit()
-})
-
-process.on('exit', function () {
-  console.log('Closing the database')
-  // db.close()
 })
 
 console.log('\tStarting!')
