@@ -35,26 +35,24 @@
   "license": "GPL-3.0",
   "private": true,
   "dependencies": {
-    "bluebird": "^3.5.0",
     "body-parser": "^1.18.2",
     "bootstrap": "4.0.0-alpha.6",
     "cheerio": "^1.0.0-rc.2",
-    "cp-cli": "^1.1.0",
     "dotenv": "^4.0.0",
     "ejs": "^2.5.7",
     "express": "^4.15.4",
     "express-session": "^1.15.5",
-    "mkdirp": "^0.5.1",
     "node-paternal": "^1.1.0",
     "node-schedule": "^1.2.5",
     "passport": "^0.4.0",
     "passport-google-oauth2": "^0.1.6",
     "request": "^2.82.0",
-    "request-promise": "^4.2.2",
-    "sqlite3": "^3.1.13"
+    "request-promise": "^4.2.2"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.1",
-    "standard": "^10.0.3"
+    "standard": "^10.0.3",
+    "mkdirp": "^0.5.1",
+    "cp-cli": "^1.1.0"
   }
 }
