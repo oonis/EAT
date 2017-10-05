@@ -1,6 +1,6 @@
 {
   "name": "eat",
-  "version": "0.3",
+  "version": "0.3.0",
   "description": "Where should I eat at ...?",
   "main": "server.js",
   "scripts": {
