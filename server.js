@@ -104,6 +104,7 @@ process.on('exit', function () {
   // db.close()
 })
 
-    // Start server
 console.log('\tStarting!')
 app.listen(port)
+
+module.exports = app
