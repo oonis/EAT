@@ -47,7 +47,6 @@ app.use('/pref', require('./routes/pref'))
 app.use('/', require('./routes/homepage'))
 
 // Handle 404
-console.log('\tHandling 404')
 app.use(function (req, res, next) {
   let err = new Error('Not found')
   err.status = 404
@@ -55,7 +54,6 @@ app.use(function (req, res, next) {
 })
 
 // Handle exceptions
-console.log('\tHandling exceptions')
 app.use(function (err, req, res, next) {
   res.status(err.status || 500)
   res.render('error', {
