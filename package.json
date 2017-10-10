@@ -42,6 +42,7 @@
     "ejs": "^2.5.7",
     "express": "^4.15.4",
     "express-session": "^1.15.5",
+    "mysql": "^2.15.0",
     "node-paternal": "^1.1.0",
     "node-schedule": "^1.2.5",
     "passport": "^0.4.0",
@@ -50,9 +51,9 @@
     "request-promise": "^4.2.2"
   },
   "devDependencies": {
-    "npm-run-all": "^4.1.1",
-    "standard": "^10.0.3",
+    "cp-cli": "^1.1.0",
     "mkdirp": "^0.5.1",
-    "cp-cli": "^1.1.0"
+    "npm-run-all": "^4.1.1",
+    "standard": "^10.0.3"
   }
 }

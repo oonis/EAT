@@ -2,26 +2,46 @@ const express = require('express')
 const path = require('path')
 const app = express()
 const passport = require('passport')
+require('dotenv').config()
 
 console.log('Launching server...')
 
+// Connect to the database
+console.log('\tConnecting to Database')
+const mysql = require('mysql')
+console.log(process.env.MYSQL_HOST)
+const connection = mysql.createConnection({
+  host: process.env.MYSQL_HOST,
+  database: process.env.MYSQL_TABLE,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD
+})
+connection.connect(function (err) {
+  if (!err) {
+    console.log('\t\tConnected to database')
+  } else {
+    console.log(err)
+  }
+})
+
+app.use(function (req, res, next) {
+  req.db = connection
+  next()
+})
+
 // Configure environment
-console.log('\tConfiguring environment...')
-require('dotenv').config()
 const port = process.env.PORT || 5000
 
 // Static files
-console.log('\tStatic files...')
 app.use(express.static(path.join(__dirname, 'assets')))
 
 // Configure bodyparser
-console.log('\tConfiguring modules...')
+console.log('\tConfiguring modules')
 var bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 
 // Configure view engine
-console.log('\tConfiguring view engine...')
 app.set('view engine', 'ejs')
 
 // Sessions && Credentials
@@ -65,6 +85,7 @@ app.use(function (err, req, res, next) {
 
 // Handle SIGINT
 process.on('SIGINT', function () {
+  connection.end()
   process.exit()
 })
 
