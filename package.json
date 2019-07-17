@@ -33,7 +33,7 @@
   ],
   "repository": "https://github.com/oonis/EAT.git",
   "license": "GPL-3.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "body-parser": "^1.18.2",
     "bootstrap": "4.0.0-alpha.6",
